@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "homepage": "https://github.com/F-Leon11/8.-Lista-de-Tareas-F.git",
+  "scripts": {
+    "build": "powershell -File build.ps1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "clean": "rimraf dist",
+    "full-deploy": "npm run clean && npm run deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "rimraf": "^6.0.1"
+  }
+}
