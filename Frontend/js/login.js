@@ -10,9 +10,6 @@ const registerError = document.getElementById("register-error");
 const loginSuccess = document.getElementById("login-success");
 const registerSuccess = document.getElementById("register-success");
 
-// URL base de tu API - cambia según tu configuración
-const API_URL = "http://localhost:3000";
-
 // Cambiar entre formularios de login y registro
 switchToRegister.addEventListener("click", () => {
   loginContainer.classList.add("hidden");
@@ -34,8 +31,8 @@ function clearMessages() {
   registerSuccess.textContent = "";
 }
 
-// Función para manejar el login
-loginBtn.addEventListener("click", async () => {
+// Función para manejar el login (simulado)
+loginBtn.addEventListener("click", () => {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
 
@@ -44,48 +41,32 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  try {
-    loginError.textContent = "";
-    loginBtn.textContent = "Iniciando sesión...";
-    loginBtn.disabled = true;
+  loginError.textContent = "";
+  loginBtn.textContent = "Iniciando sesión...";
+  loginBtn.disabled = true;
 
-    // Llamada a tu API de login
-    const response = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+  // Simular proceso de login
+  setTimeout(() => {
+    // Guardar datos de usuario simulados
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: "Usuario",
+        email: email,
+      })
+    );
 
-    const data = await response.json();
+    loginSuccess.textContent = "¡Inicio de sesión exitoso! Redirigiendo...";
 
-    if (response.ok) {
-      // Guardar datos de usuario
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("authToken", data.token); // Si usas JWT
-
-      loginSuccess.textContent = "¡Inicio de sesión exitoso! Redirigiendo...";
-
-      // Redirigir a la página principal después de 1 segundo
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    } else {
-      loginError.textContent = data.message || "Credenciales incorrectas";
-      loginBtn.textContent = "Iniciar Sesión";
-      loginBtn.disabled = false;
-    }
-  } catch (error) {
-    console.error("Error en login:", error);
-    loginError.textContent = "Error al conectar con el servidor";
-    loginBtn.textContent = "Iniciar Sesión";
-    loginBtn.disabled = false;
-  }
+    // Redirigir a la página principal después de 1 segundo
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  }, 1000);
 });
 
-// Función para manejar el registro
-registerBtn.addEventListener("click", async () => {
+// Función para manejar el registro (simulado)
+registerBtn.addEventListener("click", () => {
   const name = document.getElementById("register-name").value;
   const email = document.getElementById("register-email").value;
   const password = document.getElementById("register-password").value;
@@ -101,45 +82,29 @@ registerBtn.addEventListener("click", async () => {
     return;
   }
 
-  try {
-    registerError.textContent = "";
-    registerBtn.textContent = "Creando cuenta...";
-    registerBtn.disabled = true;
+  registerError.textContent = "";
+  registerBtn.textContent = "Creando cuenta...";
+  registerBtn.disabled = true;
 
-    // Llamada a tu API de registro
-    const response = await fetch(`${API_URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
+  // Simular proceso de registro
+  setTimeout(() => {
+    // Guardar datos de usuario simulados
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: name,
+        email: email,
+      })
+    );
 
-    const data = await response.json();
+    registerSuccess.textContent =
+      "¡Cuenta creada exitosamente! Redirigiendo...";
 
-    if (response.ok) {
-      registerSuccess.textContent =
-        "¡Cuenta creada exitosamente! Redirigiendo...";
-
-      // Guardar datos de usuario
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("authToken", data.token); // Si usas JWT
-
-      // Redirigir a la página principal después de 1 segundo
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    } else {
-      registerError.textContent = data.message || "Error al crear la cuenta";
-      registerBtn.textContent = "Crear Cuenta";
-      registerBtn.disabled = false;
-    }
-  } catch (error) {
-    console.error("Error en registro:", error);
-    registerError.textContent = "Error al conectar con el servidor";
-    registerBtn.textContent = "Crear Cuenta";
-    registerBtn.disabled = false;
-  }
+    // Redirigir a la página principal después de 1 segundo
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  }, 1000);
 });
 
 // Verificar si ya hay una sesión activa al cargar la página
@@ -148,6 +113,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userData) {
     // Si ya hay una sesión, redirigir directamente a la página de tareas
     window.location.href = "index.html";
-    //console.log("usuario en un login pendiente");
   }
 });

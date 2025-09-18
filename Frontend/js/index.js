@@ -1,7 +1,6 @@
 const btnsummit = document.getElementById("summit-tarea");
 const inputtarea = document.getElementById("input-tarea");
 const listatarea = document.getElementById("list-tareas");
-const API_URL = "http://localhost:3000";
 
 // Elementos de la barra de usuario
 const userNameElement = document.getElementById("user-name");
@@ -15,13 +14,15 @@ function cargarInformacionUsuario() {
   if (userData) {
     userNameElement.textContent = userData.name || "Usuario";
     userEmailElement.textContent = userData.email || "";
+  } else {
+    // Si no hay usuario, redirigir al login
+    window.location.href = "login.html";
   }
 }
 
 // Función para cerrar sesión
 function cerrarSesion() {
   localStorage.removeItem("user");
-  localStorage.removeItem("authToken");
   window.location.href = "login.html";
 }
 
@@ -32,38 +33,14 @@ if (logoutBtn) {
 
 // Verificar autenticación al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
-  const userData = JSON.parse(localStorage.getItem("user"));
-
-  if (!userData) {
-    window.location.href = "login.html";
-    return;
-  }
-
   cargarInformacionUsuario();
   mostrarTareas();
 });
 
 // Recuperamos las tareas cuando carga la página
-async function mostrarTareas() {
+function mostrarTareas() {
   try {
-    const authToken = localStorage.getItem("authToken");
-
-    const response = await fetch(`${API_URL}/tareas`, {
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
-
-    if (response.status === 401) {
-      cerrarSesion();
-      return;
-    }
-
-    if (!response.ok) {
-      throw new Error("Error al cargar tareas");
-    }
-
-    const tareas = await response.json();
+    const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
 
     listatarea.innerHTML = "";
 
@@ -74,11 +51,7 @@ async function mostrarTareas() {
     }
 
     tareas.forEach((tarea) => {
-      const tareaAdaptada = {
-        texto: tarea.Titulo,
-        completada: tarea.completada,
-      };
-      agregarTareaDOM(tareaAdaptada, tarea.id_tareas);
+      agregarTareaDOM(tarea);
     });
   } catch (error) {
     listatarea.innerHTML =
@@ -94,17 +67,24 @@ btnsummit.addEventListener("click", function () {
   }
 
   const nuevaTarea = {
-    Titulo: tarea,
-    Descripcion: tarea,
-    completada: 0,
+    id: Date.now(), // ID único basado en timestamp
+    texto: tarea,
+    completada: false,
   };
 
-  guardarTareaBackend(nuevaTarea);
+  guardarTareaLocal(nuevaTarea);
   inputtarea.value = "";
 });
 
-// Función para guardar tarea en el backend
-async function guardarTareaBackend(tareaObj) {
+// También permitir agregar tareas con la tecla Enter
+inputtarea.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    btnsummit.click();
+  }
+});
+
+// Función para guardar tarea en localStorage
+function guardarTareaLocal(tareaObj) {
   try {
     // Eliminar el mensaje de "No hay tareas" si existe
     const noTareasMsg = listatarea.querySelector(".no-tareas");
@@ -112,76 +92,56 @@ async function guardarTareaBackend(tareaObj) {
       noTareasMsg.remove();
     }
 
-    const authToken = localStorage.getItem("authToken");
+    // Obtener tareas existentes
+    const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
 
-    const response = await fetch(`${API_URL}/tareas`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`,
-      },
-      body: JSON.stringify(tareaObj),
-    });
+    // Agregar nueva tarea
+    tareas.push(tareaObj);
 
-    if (response.status === 401) {
-      cerrarSesion();
-      return;
-    }
+    // Guardar en localStorage
+    localStorage.setItem("tareas", JSON.stringify(tareas));
 
-    if (!response.ok) {
-      throw new Error("Error al guardar tarea");
-    }
-
-    const nuevaTarea = await response.json();
-    const tareaAdaptada = {
-      texto: nuevaTarea.Titulo,
-      completada: nuevaTarea.completada,
-    };
-
-    agregarTareaDOM(tareaAdaptada, nuevaTarea.id_tareas);
+    agregarTareaDOM(tareaObj);
   } catch (error) {
     alert("Error al guardar tarea");
   }
 }
 
 // Función para actualizar el estado de una tarea
-async function actualizarTareaBackend(id, completada) {
+function actualizarTareaLocal(id, completada) {
   try {
-    const authToken = localStorage.getItem("authToken");
+    const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
 
-    await fetch(`${API_URL}/tareas/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${authToken}`,
-      },
-      body: JSON.stringify({ completada: completada ? 1 : 0 }),
-    });
+    // Encontrar y actualizar la tarea
+    const tareaIndex = tareas.findIndex((t) => t.id === id);
+    if (tareaIndex !== -1) {
+      tareas[tareaIndex].completada = completada;
+      localStorage.setItem("tareas", JSON.stringify(tareas));
+    }
   } catch (error) {
-    // Error silencioso para actualización
+    console.error("Error al actualizar tarea:", error);
   }
 }
 
 // Función para eliminar una tarea
-async function eliminarTareaBackend(id) {
+function eliminarTareaLocal(id) {
   try {
-    const authToken = localStorage.getItem("authToken");
+    const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
 
-    await fetch(`${API_URL}/tareas/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
+    // Filtrar la tarea a eliminar
+    const nuevasTareas = tareas.filter((t) => t.id !== id);
+
+    // Guardar en localStorage
+    localStorage.setItem("tareas", JSON.stringify(nuevasTareas));
   } catch (error) {
-    // Error silencioso para eliminación
+    console.error("Error al eliminar tarea:", error);
   }
 }
 
-function agregarTareaDOM(tareaObj, id) {
+function agregarTareaDOM(tareaObj) {
   const li = document.createElement("li");
   li.classList.add("tarea");
-  li.dataset.id = id;
+  li.dataset.id = tareaObj.id;
 
   const textoTarea = document.createElement("span");
   textoTarea.classList.add("list-texto-tarea");
@@ -196,18 +156,18 @@ function agregarTareaDOM(tareaObj, id) {
   const btnCompletar = document.createElement("button");
   btnCompletar.classList.add("boton-completar");
   btnCompletar.textContent = "✅";
-  btnCompletar.addEventListener("click", async function () {
+  btnCompletar.addEventListener("click", function () {
     li.classList.toggle("completada");
     const nuevaEstado = li.classList.contains("completada");
-    await actualizarTareaBackend(id, nuevaEstado);
+    actualizarTareaLocal(tareaObj.id, nuevaEstado);
   });
 
   // Botón de eliminar
   const boton = document.createElement("button");
   boton.classList.add("btn-eliminar");
   boton.textContent = "🗑️";
-  boton.addEventListener("click", async function () {
-    await eliminarTareaBackend(id);
+  boton.addEventListener("click", function () {
+    eliminarTareaLocal(tareaObj.id);
     li.remove();
 
     // Si no quedan tareas, mostrar el mensaje
