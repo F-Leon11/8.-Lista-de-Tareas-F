@@ -1,0 +1,234 @@
+html {
+  height: 100%;
+}
+
+@font-face {
+  font-family: "Mi fuente";
+  src: url("../Fuentes/little_daisy/Little\ Daisy.ttf");
+}
+
+@font-face {
+  font-family: "Texto";
+  src: url("../Fuentes/winter_wonderful/WinterWonderful.otf");
+}
+body {
+  font-size: 25px;
+  font-family: "Texto";
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  margin: 0;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Barra de usuario */
+.user-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#user-name {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#user-email {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+#logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.container {
+  width: 90%;
+  max-width: 830px;
+  margin: 30px auto;
+  margin-top: 115px;
+  height: 820px;
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle 950px, #74ebd5, #acb6e5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+#title {
+  font-size: 70px;
+  font-family: "Mi fuente";
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 20px;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background: radial-gradient(circle 950px, #74ebd5, #acb6e5);
+  padding: 10px 0;
+  z-index: 100;
+}
+
+#input-tarea {
+  width: 70%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+
+  /* Colores */
+  background: linear-gradient(10deg, #ffffff, #71a0c2);
+  color: #333;
+
+  /* Efectos */
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+    5px 5px 12px rgba(0, 0, 0, 0.2);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#input-tarea:focus {
+  background: linear-gradient(10deg, #c9b6ce, #f4f0f5);
+}
+
+#summit-tarea {
+  padding: 12px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#summit-tarea:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#summit-tarea:active {
+  transform: scale(0.95);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.completada {
+  margin-right: 10px;
+  display: flex;
+  text-decoration: line-through;
+  color: gray;
+}
+#list-tareas {
+  max-width: 800px;
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px; /* espacio para que no tape el scroll */
+  border-radius: 40px;
+}
+
+#list-tareas::-webkit-scrollbar {
+  width: 8px;
+}
+
+#list-tareas::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  border-radius: 10px;
+}
+
+#list-tareas::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.no-tareas {
+  font-size: 35px;
+}
+
+.tarea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: min(10px);
+  background-color: #cfcfcf;
+  border-radius: 20px;
+  box-shadow: 7px 10px 18px rgba(82, 59, 112, 0.7);
+  margin-top: 20px;
+  gap: 10px; /* espacio entre texto y botones */
+  max-width: 650px;
+  min-width: 650px;
+  width: 100%;
+}
+
+.list-texto-tarea {
+  flex: 1; /* ocupa todo el espacio disponible */
+  max-width: 70%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.boton-completar,
+.btn-eliminar {
+  font-size: larger;
+  padding: 10px 20px;
+  background-color: #0a0a0a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.boton-completar {
+  margin-left: 10px;
+}
+
+.btn-eliminar {
+  margin-left: 10px;
+}

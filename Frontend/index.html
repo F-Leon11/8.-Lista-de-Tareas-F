@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>MINI LISTA DE TAREAS</title>
+  </head>
+  <body>
+    <!-- Barra de usuario -->
+    <div class="user-bar">
+      <div class="user-info">
+        <span id="user-name">Usuario</span>
+        <span id="user-email">email@ejemplo.com</span>
+      </div>
+      <button id="logout-btn">Cerrar Sesión</button>
+    </div>
+    <!--Lista de tareas-->
+    <div class="container">
+      <h1 id="title">LISTA DE TAREAS</h1>
+      <div class="input-group">
+        <input type="text" id="input-tarea" placeholder="Nueva tarea..." />
+        <button id="summit-tarea">Agregar</button>
+      </div>
+      <div class="list-group">
+        <ul id="list-tareas">
+          <!-- Las tareas se agregarán aquí -->
+        </ul>
+      </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
+</html>
