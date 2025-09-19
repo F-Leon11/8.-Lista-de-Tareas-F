@@ -1,8 +1,9 @@
 /* Estilos combinados de styles.css y loginstyles.css */
-html {
+html,
+body {
   height: 100%;
+  min-height: 100%;
 }
-
 @font-face {
   font-family: "Mi fuente";
   src: url("../Fuentes/little_daisy/Little\ Daisy.ttf");
@@ -17,6 +18,7 @@ body {
   font-size: 25px;
   font-family: "Texto";
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background-attachment: fixed; /* 🔑 */
   margin: 0;
   min-height: 100vh;
   display: flex;
