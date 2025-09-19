@@ -16,13 +16,13 @@ body {
 }
 
 body {
-  font-size: 16px; /* Reducido para móviles */
+  font-size: 16px;
   font-family: "Texto", sans-serif;
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
   background-attachment: fixed;
   margin: 0;
   min-height: 100vh;
-  padding: 15px; /* Reducido para móviles */
+  padding: 15px;
   box-sizing: border-box;
 }
 
@@ -34,7 +34,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  padding: 20px; /* Reducido para móviles */
+  padding: 20px;
   margin: 0 auto;
 }
 
@@ -44,14 +44,14 @@ body {
 
 .auth-container h1 {
   color: #2c3e50;
-  margin-bottom: 20px; /* Reducido para móviles */
+  margin-bottom: 20px;
   text-align: center;
-  font-size: 28px; /* Ajustado para móviles */
+  font-size: 28px;
 }
 
 .form-group {
   width: 100%;
-  margin-bottom: 15px; /* Reducido para móviles */
+  margin-bottom: 15px;
 }
 
 .form-group label {
@@ -59,12 +59,12 @@ body {
   margin-bottom: 8px;
   font-weight: 500;
   color: #2c3e50;
-  font-size: 16px; /* Ajustado para móviles */
+  font-size: 16px;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 15px; /* Reducido para móviles */
+  padding: 12px 15px;
   border: 2px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
@@ -78,7 +78,7 @@ body {
 }
 
 .auth-btn {
-  padding: 12px 20px; /* Reducido para móviles */
+  padding: 12px 20px;
   background: #3498db;
   color: white;
   border: none;
@@ -95,10 +95,10 @@ body {
 }
 
 .switch-form {
-  margin-top: 15px; /* Reducido para móviles */
+  margin-top: 15px;
   text-align: center;
   color: #7f8c8d;
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
 }
 
 .switch-form a {
@@ -115,14 +115,14 @@ body {
   color: #e74c3c;
   margin-top: 10px;
   text-align: center;
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
 }
 
 .success {
   color: #2ecc71;
   margin-top: 10px;
   text-align: center;
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
 }
 
 /* Barra de usuario */
@@ -133,13 +133,13 @@ body {
   right: 0;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  padding: 8px 15px; /* Reducido para móviles */
+  padding: 8px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  flex-wrap: wrap; /* Para móviles */
+  flex-wrap: wrap;
 }
 
 .user-info {
@@ -149,11 +149,11 @@ body {
 
 #user-name {
   font-weight: bold;
-  font-size: 18px; /* Reducido para móviles */
+  font-size: 18px;
 }
 
 #user-email {
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
   opacity: 0.9;
 }
 
@@ -161,12 +161,12 @@ body {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 6px 12px; /* Reducido para móviles */
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
-  font-size: 14px; /* Reducido para móviles */
-  white-space: nowrap; /* Evita que el texto se divida */
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 #logout-btn:hover {
@@ -175,57 +175,57 @@ body {
 
 /* Contenedor de tareas */
 .container {
-  width: 95%; /* Aumentado para móviles */
+  width: 95%;
   max-width: 750px;
-  min-width: unset; /* Eliminado para móviles */
-  margin: 70px auto 30px; /* Ajustado para la barra de usuario */
-  padding: 20px; /* Reducido para móviles */
+  min-width: unset;
+  margin: 70px auto 30px;
+  padding: 20px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   background: radial-gradient(circle 950px, #74ebd5, #acb6e5);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   align-items: center;
-  justify-content: flex-start; /* Cambiado para móviles */
-  font-size: 16px; /* Reducido para móviles */
+  justify-content: flex-start;
+  font-size: 16px;
   font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
-  min-height: auto; /* Eliminado para móviles */
-  height: auto; /* Eliminado altura fija */
+  min-height: auto;
+  height: auto;
 }
 
 .container:hover {
-  transform: scale(1.02); /* Reducido para móviles */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Ajustado para móviles */
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 #title {
-  font-size: 40px; /* Reducido para móviles */
+  font-size: 40px;
   font-family: "Mi fuente";
   text-align: center;
-  margin: 10px 0 15px; /* Ajustado para móviles */
+  margin: 10px 0 15px;
   line-height: 1.2;
 }
 
 .input-group {
   display: flex;
   align-items: center;
-  gap: 10px; /* Reducido para móviles */
+  gap: 10px;
   width: 100%;
-  margin-bottom: 15px; /* Reducido para móviles */
+  margin-bottom: 15px;
   justify-content: center;
   position: sticky;
-  top: 60px; /* Ajustado para la barra de usuario */
+  top: 60px;
   background: radial-gradient(circle 950px, #74ebd5, #acb6e5);
-  padding: 8px 0; /* Reducido para móviles */
+  padding: 8px 0;
   z-index: 100;
-  flex-wrap: wrap; /* Para móviles */
+  flex-wrap: wrap;
 }
 
 #input-tarea {
-  width: 65%; /* Ajustado para móviles */
-  padding: 10px 12px; /* Reducido para móviles */
+  width: 65%;
+  padding: 10px 12px;
   font-size: 16px;
   border: none;
   border-radius: 12px;
@@ -236,7 +236,7 @@ body {
     5px 5px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   box-sizing: border-box;
-  min-width: 150px; /* Mínimo para que sea usable */
+  min-width: 150px;
 }
 
 #input-tarea:focus {
@@ -244,12 +244,12 @@ body {
 }
 
 #summit-tarea {
-  padding: 10px 15px; /* Reducido para móviles */
+  padding: 10px 15px;
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
@@ -275,16 +275,16 @@ body {
 
 #list-tareas {
   width: 100%;
-  max-height: 50vh; /* Usando viewport height para móviles */
+  max-height: 50vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 10px; /* Reducido para móviles */
-  border-radius: 20px; /* Reducido para móviles */
+  padding-right: 10px;
+  border-radius: 20px;
   box-sizing: border-box;
 }
 
 #list-tareas::-webkit-scrollbar {
-  width: 6px; /* Reducido para móviles */
+  width: 6px;
 }
 
 #list-tareas::-webkit-scrollbar-thumb {
@@ -297,7 +297,7 @@ body {
 }
 
 .no-tareas {
-  font-size: 20px; /* Reducido para móviles */
+  font-size: 20px;
   text-align: center;
   padding: 20px;
 }
@@ -306,48 +306,55 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 12px;
   background-color: #cfcfcf;
-  border-radius: 15px; /* Reducido para móviles */
-  box-shadow: 4px 6px 12px rgba(82, 59, 112, 0.7); /* Reducido para móviles */
-  margin-top: 15px; /* Reducido para móviles */
-  gap: 8px; /* Reducido para móviles */
+  border-radius: 15px;
+  box-shadow: 4px 6px 12px rgba(82, 59, 112, 0.7);
+  margin-top: 15px;
+  gap: 12px;
   width: 100%;
   box-sizing: border-box;
-  flex-wrap: wrap; /* Para móviles */
+  flex-wrap: wrap;
 }
 
+/* MEJORA PARA EL TEXTO DE TAREAS LARGAS */
 .list-texto-tarea {
   flex: 1;
   min-width: 0;
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  font-size: 16px; /* Asegurado para móviles */
+  font-size: 16px;
+  line-height: 1.4;
+  /* Aseguramos que las palabras largas se dividan correctamente */
+  word-break: break-word;
+  /* Permitimos que el texto se divida en cualquier punto si es necesario */
+  hyphens: auto;
+}
+
+/* CONTENEDOR DE BOTONES */
+.botones-tarea {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .boton-completar,
 .btn-eliminar {
-  padding: 8px 12px; /* Reducido para móviles */
+  padding: 10px 15px;
   border: none;
-  border-radius: 8px; /* Reducido para móviles */
+  border-radius: 8px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  font-size: 14px; /* Reducido para móviles */
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Reducido para móviles */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   flex-shrink: 0;
-  margin: 2px; /* Pequeño margen para móviles */
-}
-
-.boton-completar {
-  margin-left: 10px;
-}
-
-.btn-eliminar {
-  margin-left: 10px;
+  min-width: 100px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Media Queries para Responsividad */
@@ -393,7 +400,7 @@ body {
 
   .container {
     width: 100%;
-    margin-top: 80px; /* Ajustado para la barra de usuario más pequeña */
+    margin-top: 80px;
     padding: 15px;
   }
 
@@ -404,7 +411,7 @@ body {
   .input-group {
     flex-direction: column;
     gap: 8px;
-    top: 50px; /* Ajustado para la barra de usuario más pequeña */
+    top: 50px;
   }
 
   #input-tarea {
@@ -422,24 +429,30 @@ body {
     align-items: flex-start;
     padding: 12px;
     min-width: unset;
+    gap: 10px;
   }
 
   .list-texto-tarea {
     width: 100%;
     margin-bottom: 8px;
+    /* Mejora específica para móviles */
+    word-break: break-word;
+    hyphens: auto;
   }
 
   .botones-tarea {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 5px;
   }
 
   .boton-completar,
   .btn-eliminar {
     width: 48%;
-    text-align: center;
-    margin-left: 0;
+    min-width: unset;
+    padding: 10px 5px;
+    font-size: 13px;
   }
 }
 
@@ -457,12 +470,32 @@ body {
   }
 
   #list-tareas {
-    max-height: 55vh; /* Más alto en móviles muy pequeños */
+    max-height: 55vh;
   }
 
   .boton-completar,
   .btn-eliminar {
-    padding: 6px 8px;
+    padding: 10px 5px;
     font-size: 12px;
+  }
+
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  @media (max-width: 350px) {
+    .botones-tarea {
+      flex-direction: column;
+      width: 100%;
+      gap: 5px;
+    }
+
+    .boton-completar,
+    .btn-eliminar {
+      width: 100%;
+    }
+
+    /* Mejora adicional para texto en pantallas muy pequeñas */
+    .list-texto-tarea {
+      font-size: 14px;
+      line-height: 1.3;
+    }
   }
 }
