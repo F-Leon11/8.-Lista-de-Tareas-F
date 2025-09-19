@@ -327,22 +327,21 @@ body {
   overflow-wrap: break-word;
   font-size: 16px;
   line-height: 1.4;
-  /* Aseguramos que las palabras largas se dividan correctamente */
   word-break: break-word;
-  /* Permitimos que el texto se divida en cualquier punto si es necesario */
   hyphens: auto;
 }
 
-/* CONTENEDOR DE BOTONES */
+/* CONTENEDOR DE BOTONES - MODIFICADO */
 .botones-tarea {
   display: flex;
   gap: 8px;
   flex-shrink: 0;
 }
 
+/* BOTONES QUE SE AJUSTAN AL TEXTO - MODIFICADO */
 .boton-completar,
 .btn-eliminar {
-  padding: 10px 15px;
+  padding: 8px 12px;
   border: none;
   border-radius: 8px;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -353,9 +352,12 @@ body {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   flex-shrink: 0;
-  min-width: 100px;
-  text-align: center;
+  /* ELIMINADO: min-width: 100px; */
+  /* NUEVO: Se ajusta al contenido del texto */
+  width: auto;
+  min-width: min-content;
   white-space: nowrap;
+  text-align: center;
 }
 
 /* Media Queries para Responsividad */
@@ -429,14 +431,13 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 12px;
-    min-width: unset;
+    min-width: 250px;
     gap: 10px;
   }
 
   .list-texto-tarea {
     width: 100%;
     margin-bottom: 8px;
-    /* Mejora específica para móviles */
     word-break: break-word;
     hyphens: auto;
   }
@@ -450,10 +451,14 @@ body {
 
   .boton-completar,
   .btn-eliminar {
-    width: 48%;
-    min-width: unset;
-    padding: 10px 5px;
+    /* MODIFICADO: Se ajusta al texto en móviles también */
+    width: auto;
+    min-width: min-content;
+    padding: 8px 12px;
     font-size: 13px;
+    /* Aseguramos que ocupen el espacio necesario */
+    flex: 1;
+    max-width: 48%;
   }
 }
 
@@ -476,7 +481,7 @@ body {
 
   .boton-completar,
   .btn-eliminar {
-    padding: 10px 5px;
+    padding: 8px 10px;
     font-size: 12px;
   }
 
@@ -491,9 +496,10 @@ body {
     .boton-completar,
     .btn-eliminar {
       width: 100%;
+      max-width: 100%;
+      padding: 8px;
     }
 
-    /* Mejora adicional para texto en pantallas muy pequeñas */
     .list-texto-tarea {
       font-size: 14px;
       line-height: 1.3;
