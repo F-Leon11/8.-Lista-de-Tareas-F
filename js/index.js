@@ -1,6 +1,5 @@
+// JavaScript simplificado - sin conexión a backend
 // Elementos del DOM
-const loginPage = document.getElementById("login-page");
-const tareasPage = document.getElementById("tareas-page");
 const loginContainer = document.getElementById("login-container");
 const registerContainer = document.getElementById("register-container");
 const loginBtn = document.getElementById("login-btn");
@@ -60,16 +59,18 @@ loginBtn.addEventListener("click", () => {
     localStorage.setItem(
       "user",
       JSON.stringify({
-        name: "Usuario",
+        name: email.split("@")[0] || "Usuario",
         email: email,
       })
     );
 
-    loginSuccess.textContent = "¡Inicio de sesión exitoso! Redirigiendo...";
+    loginSuccess.textContent = "¡Inicio de sesión exitoso!";
 
     // Redirigir a la página de tareas después de 1 segundo
     setTimeout(() => {
       mostrarPaginaTareas();
+      loginBtn.textContent = "Iniciar Sesión";
+      loginBtn.disabled = false;
     }, 1000);
   }, 1000);
 });
@@ -106,40 +107,39 @@ registerBtn.addEventListener("click", () => {
       })
     );
 
-    registerSuccess.textContent =
-      "¡Cuenta creada exitosamente! Redirigiendo...";
+    registerSuccess.textContent = "¡Cuenta creada exitosamente!";
 
     // Redirigir a la página de tareas después de 1 segundo
     setTimeout(() => {
       mostrarPaginaTareas();
+      registerBtn.textContent = "Crear Cuenta";
+      registerBtn.disabled = false;
     }, 1000);
   }, 1000);
 });
 
 // Función para mostrar la página de tareas
 function mostrarPaginaTareas() {
-  loginPage.style.display = "none";
-  tareasPage.style.display = "block";
+  document.getElementById("login-page").style.display = "none";
+  document.getElementById("tareas-page").style.display = "block";
   cargarInformacionUsuario();
   mostrarTareas();
 }
 
 // Función para cargar la información del usuario
 function cargarInformacionUsuario() {
-  const userData = JSON.parse(
-    localStorage.getItem("user") ||
-      '{"name":"Usuario", "email":"email@ejemplo.com"}'
-  );
-  userNameElement.textContent = userData.name;
-  userEmailElement.textContent = userData.email;
+  const userData = JSON.parse(localStorage.getItem("user"));
+  if (userData) {
+    userNameElement.textContent = userData.name || "Usuario";
+    userEmailElement.textContent = userData.email || "email@ejemplo.com";
+  }
 }
 
 // Función para cerrar sesión
 function cerrarSesion() {
   localStorage.removeItem("user");
-  localStorage.removeItem("tareas");
-  tareasPage.style.display = "none";
-  loginPage.style.display = "block";
+  document.getElementById("tareas-page").style.display = "none";
+  document.getElementById("login-page").style.display = "block";
   // Resetear formularios
   document.getElementById("login-email").value = "";
   document.getElementById("login-password").value = "";
@@ -154,7 +154,7 @@ if (logoutBtn) {
   logoutBtn.addEventListener("click", cerrarSesion);
 }
 
-// Cargar información del usuario y tareas al iniciar
+// Verificar autenticación al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
   const userData = JSON.parse(localStorage.getItem("user"));
   if (userData) {
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Recuperar tareas del localStorage
+// Recuperamos las tareas cuando carga la página
 function mostrarTareas() {
   const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
 
@@ -179,7 +179,6 @@ function mostrarTareas() {
   });
 }
 
-// Event listener para agregar tareas
 btnsummit.addEventListener("click", function () {
   const tarea = inputtarea.value;
 
@@ -224,69 +223,53 @@ function guardarTareaLocal(tareaObj) {
   agregarTareaDOM(tareaObj);
 }
 
-// Función para actualizar el estado de una tarea
-function actualizarTareaLocal(id, completada) {
-  const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
-
-  // Encontrar y actualizar la tarea
-  const tareaIndex = tareas.findIndex((t) => t.id === id);
-  if (tareaIndex !== -1) {
-    tareas[tareaIndex].completada = completada;
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-  }
-}
-
-// Función para eliminar una tarea
-function eliminarTareaLocal(id) {
-  const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
-
-  // Filtrar la tarea a eliminar
-  const nuevasTareas = tareas.filter((t) => t.id !== id);
-
-  // Guardar en localStorage
-  localStorage.setItem("tareas", JSON.stringify(nuevasTareas));
-}
-
+// Función para agregar tarea al DOM
 function agregarTareaDOM(tareaObj) {
   const li = document.createElement("li");
-  li.classList.add("tarea");
+  li.className = "tarea";
   li.dataset.id = tareaObj.id;
 
-  const textoTarea = document.createElement("span");
-  textoTarea.classList.add("list-texto-tarea");
-  textoTarea.textContent = tareaObj.texto;
-  li.appendChild(textoTarea);
+  li.innerHTML = `
+                <span class="list-texto-tarea ${
+                  tareaObj.completada ? "completada" : ""
+                }">${tareaObj.texto}</span>
+                <button class="boton-completar">${
+                  tareaObj.completada ? "Desmarcar" : "Completar"
+                }</button>
+                <button class="btn-eliminar">Eliminar</button>
+            `;
 
-  if (tareaObj.completada) {
-    li.classList.add("completada");
-  }
-
-  // Botón de completar
-  const btnCompletar = document.createElement("button");
-  btnCompletar.classList.add("boton-completar");
-  btnCompletar.textContent = "✅";
-  btnCompletar.addEventListener("click", function () {
-    li.classList.toggle("completada");
-    const nuevaEstado = li.classList.contains("completada");
-    actualizarTareaLocal(tareaObj.id, nuevaEstado);
+  // Evento para completar/descompletar tarea
+  const botonCompletar = li.querySelector(".boton-completar");
+  botonCompletar.addEventListener("click", function () {
+    completarTarea(tareaObj.id);
   });
 
-  // Botón de eliminar
-  const boton = document.createElement("button");
-  boton.classList.add("btn-eliminar");
-  boton.textContent = "🗑️";
-  boton.addEventListener("click", function () {
-    eliminarTareaLocal(tareaObj.id);
-    li.remove();
-
-    // Si no quedan tareas, mostrar el mensaje
-    if (listatarea.children.length === 0) {
-      listatarea.innerHTML =
-        '<div class="no-tareas">No hay tareas. ¡Agrega una nueva!</div>';
-    }
+  // Evento para eliminar tarea
+  const botonEliminar = li.querySelector(".btn-eliminar");
+  botonEliminar.addEventListener("click", function () {
+    eliminarTarea(tareaObj.id);
   });
 
-  li.appendChild(btnCompletar);
-  li.appendChild(boton);
   listatarea.appendChild(li);
+}
+
+// Función para completar/descompletar tarea
+function completarTarea(id) {
+  const tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
+  const tareaIndex = tareas.findIndex((tarea) => tarea.id === id);
+
+  if (tareaIndex !== -1) {
+    tareas[tareaIndex].completada = !tareas[tareaIndex].completada;
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+    mostrarTareas();
+  }
+}
+
+// Función para eliminar tarea
+function eliminarTarea(id) {
+  let tareas = JSON.parse(localStorage.getItem("tareas") || "[]");
+  tareas = tareas.filter((tarea) => tarea.id !== id);
+  localStorage.setItem("tareas", JSON.stringify(tareas));
+  mostrarTareas();
 }

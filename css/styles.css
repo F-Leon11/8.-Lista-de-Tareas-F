@@ -1,3 +1,4 @@
+/* Estilos combinados de styles.css y loginstyles.css */
 html {
   height: 100%;
 }
@@ -11,15 +12,109 @@ html {
   font-family: "Texto";
   src: url("../Fuentes/winter_wonderful/WinterWonderful.otf");
 }
+
 body {
   font-size: 25px;
   font-family: "Texto";
   background: linear-gradient(135deg, #74ebd5, #acb6e5);
   margin: 0;
-  min-height: 50vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+}
+
+/* Estilos para login/registro */
+.auth-container {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  padding: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.auth-container h1 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #3498db;
+}
+
+.auth-btn {
+  padding: 14px 24px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  width: 100%;
+  font-size: 16px;
+}
+
+.auth-btn:hover {
+  background: #2980b9;
+}
+
+.switch-form {
+  margin-top: 20px;
+  text-align: center;
+  color: #7f8c8d;
+}
+
+.switch-form a {
+  color: #3498db;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.switch-form a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: #e74c3c;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success {
+  color: #2ecc71;
+  margin-top: 10px;
+  text-align: center;
 }
 
 /* Barra de usuario */
@@ -67,9 +162,11 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* Contenedor de tareas */
 .container {
   width: 90%;
-  max-width: 830px;
+  max-width: 750px;
+  min-width: 750px;
   margin: 30px auto;
   margin-top: 115px;
   height: 820px;
@@ -85,6 +182,7 @@ body {
   font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .container:hover {
   transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
@@ -118,15 +216,10 @@ body {
   border: none;
   border-radius: 12px;
   outline: none;
-
-  /* Colores */
   background: linear-gradient(10deg, #ffffff, #71a0c2);
   color: #333;
-
-  /* Efectos */
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2),
     5px 5px 12px rgba(0, 0, 0, 0.2);
-
   transition: all 0.3s ease-in-out;
 }
 
@@ -165,6 +258,7 @@ body {
   text-decoration: line-through;
   color: gray;
 }
+
 #list-tareas {
   max-width: 800px;
   max-height: 520px;
@@ -195,34 +289,40 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: min(10px);
+  padding: 10px; /* usaste min(10px), mejor fijo */
   background-color: #cfcfcf;
   border-radius: 20px;
   box-shadow: 7px 10px 18px rgba(82, 59, 112, 0.7);
   margin-top: 20px;
-  gap: 10px; /* espacio entre texto y botones */
+  gap: 10px;
   max-width: 650px;
   min-width: 650px;
   width: 100%;
+  box-sizing: border-box; /* asegura que padding no aumente ancho */
 }
 
 .list-texto-tarea {
-  flex: 1; /* ocupa todo el espacio disponible */
-  max-width: 70%;
+  flex: 1;
+  min-width: 0; /* 🔑 evita que el texto desborde el flex */
   white-space: normal;
   word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .boton-completar,
 .btn-eliminar {
-  font-size: larger;
-  padding: 10px 20px;
-  background-color: #0a0a0a;
-  color: white;
+  padding: 12px 20px;
+  margin-left: 10px;
   border: none;
   border-radius: 12px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* 🔑 evita que los botones se achiquen */
 }
 
 .boton-completar {

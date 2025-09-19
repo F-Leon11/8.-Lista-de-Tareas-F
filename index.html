@@ -7,73 +7,71 @@
     <title>MINI LISTA DE TAREAS</title>
   </head>
   <body>
-    <!-- Página de Login/Registro (inicialmente visible) -->
-    <div id="login-page" class="container">
-      <!-- Formulario de Login -->
-      <div class="auth-container" id="login-container">
-        <h1>Iniciar Sesión</h1>
-        <div class="form-group">
-          <label for="login-email">Correo electrónico</label>
-          <input
-            type="email"
-            id="login-email"
-            placeholder="Tu correo electrónico"
-          />
+    <!-- Página de Login/Registro -->
+    <div id="login-page">
+      <div class="auth-container">
+        <!-- Formulario de Login -->
+        <div id="login-container">
+          <h1>Iniciar Sesión</h1>
+          <div class="form-group">
+            <label for="login-email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="Tu correo electrónico"
+            />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Contraseña</label>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Tu contraseña"
+            />
+          </div>
+          <button id="login-btn" class="auth-btn">Iniciar Sesión</button>
+          <div id="login-error" class="error"></div>
+          <div id="login-success" class="success"></div>
+          <div class="switch-form">
+            ¿No tienes cuenta? <a id="switch-to-register">Regístrate aquí</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="login-password">Contraseña</label>
-          <input
-            type="password"
-            id="login-password"
-            placeholder="Tu contraseña"
-          />
-        </div>
-        <button id="login-btn">Iniciar Sesión</button>
-        <div class="error" id="login-error"></div>
-        <div class="success" id="login-success"></div>
-        <div class="switch-form">
-          ¿No tienes cuenta? <a id="switch-to-register">Regístrate aquí</a>
-        </div>
-      </div>
 
-      <!-- Formulario de Registro -->
-      <div class="auth-container hidden" id="register-container">
-        <h1>Crear Cuenta</h1>
-        <div class="form-group">
-          <label for="register-name">Nombre de usuario</label>
-          <input
-            type="text"
-            id="register-name"
-            placeholder="Tu nombre de usuario"
-          />
-        </div>
-        <div class="form-group">
-          <label for="register-email">Correo electrónico</label>
-          <input
-            type="email"
-            id="register-email"
-            placeholder="Tu correo electrónico"
-          />
-        </div>
-        <div class="form-group">
-          <label for="register-password">Contraseña</label>
-          <input
-            type="password"
-            id="register-password"
-            placeholder="Crea una contraseña"
-          />
-        </div>
-        <button id="register-btn">Crear Cuenta</button>
-        <div class="error" id="register-error"></div>
-        <div class="success" id="register-success"></div>
-        <div class="switch-form">
-          ¿Ya tienes cuenta? <a id="switch-to-login">Inicia sesión aquí</a>
+        <!-- Formulario de Registro -->
+        <div id="register-container" class="hidden">
+          <h1>Crear Cuenta</h1>
+          <div class="form-group">
+            <label for="register-name">Nombre</label>
+            <input type="text" id="register-name" placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label for="register-email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Tu correo electrónico"
+            />
+          </div>
+          <div class="form-group">
+            <label for="register-password">Contraseña</label>
+            <input
+              type="password"
+              id="register-password"
+              placeholder="Mínimo 6 caracteres"
+            />
+          </div>
+          <button id="register-btn" class="auth-btn">Crear Cuenta</button>
+          <div id="register-error" class="error"></div>
+          <div id="register-success" class="success"></div>
+          <div class="switch-form">
+            ¿Ya tienes cuenta? <a id="switch-to-login">Inicia sesión aquí</a>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Página de Tareas (inicialmente oculta) -->
-    <div id="tareas-page" class="container" style="display: none">
+    <div id="tareas-page" style="display: none">
       <!-- Barra de usuario -->
       <div class="user-bar">
         <div class="user-info">
@@ -83,17 +81,18 @@
         <button id="logout-btn">Cerrar Sesión</button>
       </div>
 
-      <!-- Lista de tareas -->
-      <h1 id="title">LISTA DE TAREAS</h1>
-      <div class="input-group">
-        <input type="text" id="input-tarea" placeholder="Nueva tarea..." />
-        <button id="summit-tarea">Agregar</button>
-      </div>
-      <div class="list-group">
-        <ul id="list-tareas">
-          <!-- Las tareas se agregarán aquí -->
-          <div class="no-tareas">No hay tareas. ¡Agrega una nueva!</div>
-        </ul>
+      <!--Lista de tareas-->
+      <div class="container">
+        <h1 id="title">LISTA DE TAREAS</h1>
+        <div class="input-group">
+          <input type="text" id="input-tarea" placeholder="Nueva tarea..." />
+          <button id="summit-tarea">Agregar</button>
+        </div>
+        <div class="list-group">
+          <ul id="list-tareas">
+            <!-- Las tareas se agregarán aquí -->
+          </ul>
+        </div>
       </div>
     </div>
 
